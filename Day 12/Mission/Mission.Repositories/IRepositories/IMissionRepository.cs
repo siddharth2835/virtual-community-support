@@ -1,0 +1,26 @@
+﻿using Mission.Entities;
+using Mission.Entities.Entities;
+using Mission.Entities.Models;
+using System.Net;
+
+namespace Mission.Repositories.IRepositories
+{
+    public interface IMissionRepository
+    {
+        Task<List<MissionRequestViewModel>> GetAllMissionAsync();
+        Task<MissionRequestViewModel?> GetMissionById(int id);
+        Task<bool> AddMission(Missions mission);
+
+        Task<List<MissionDetailResponseModel>> GetClientSideMissionList(int userId);
+        Task<bool> UpdateMission(MissionRequestViewModel mission);
+        Task<bool> DeleteMission(int missionId);
+
+        Task<(HttpStatusCode statusCode, string message)> ApplyMission(ApplyMissionRequestModel model);
+
+        Task<List<MissionApplicationResponseModel>> GetMissionApplicationList();
+
+        Task<bool> MissionApplicationApprove(int missionApplicationId);
+
+        Task<bool> MissionApplicationDisapprove(int missionApplicationId);
+    }
+}
